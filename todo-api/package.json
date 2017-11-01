@@ -1,10 +1,11 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "Basic todo app with users. Flexbox, React front end. Node, Express, MongoDb back end.",
+  "description":
+    "Basic todo app with users. Flexbox, React front end. Node, Express, MongoDb back end.",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js --presets es2015,stage-2",
+    "start": "babel-node server.js --presets es2015,stage-2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
