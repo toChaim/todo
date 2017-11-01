@@ -1,0 +1,26 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "Back end for a Basic todo app with users. Flexbox, React front end. Node, Express, MongoDb back end.",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toChaim/todo-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toChaim/todo-api/issues"
+  },
+  "homepage": "https://github.com/toChaim/todo-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.6"
+  }
+}
