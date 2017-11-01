@@ -2,9 +2,10 @@ const express = require('express');
 var api = express();
 
 api.get('/', (req, res, next) => {
-  res.render('index', { text: 'hellow world' });
+  console.log('index response');
+  res.json({ text: 'hellow world' });
 });
 
 api.listen(3001, () => {
-  console.log('start linstening port 3000');
+  console.log('start linstening port 3001');
 });
