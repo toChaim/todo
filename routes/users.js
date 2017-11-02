@@ -13,7 +13,6 @@ router.get(
     res.status(err.status || 500).json({ message: err.message, error: err })
 );
 router.post('/', (req, res) => {
-  debugger;
   db.User.create(req.body).then(user => res.json(user)),
     err =>
       res.status(err.status || 500).json({ message: err.message, error: err });
