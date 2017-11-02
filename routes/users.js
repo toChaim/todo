@@ -2,39 +2,58 @@ const express = require('express');
 const router = express.Router();
 var db = require('../models');
 
-router.get(
-  '/',
-  (req, res) => {
-    db.User.find().then(users => {
+router.get('/', (req, res) => {
+  db.User
+    .find()
+    .then(users => {
       res.json({ users });
+    })
+    .catch(err => {
+      next(err);
     });
-  },
-  err =>
-    res.status(err.status || 500).json({ message: err.message, error: err })
-);
+});
 
 router.get('/:id', function(req, res, next) {
-  db.User.findById(req.params.id).then(user => {
-    res.json({ user });
-  });
+  db.User
+    .findById(req.params.id)
+    .then(user => {
+      if (user) res.json({ user });
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 router.post('/', (req, res) => {
-  db.User.create(req.body).then(user => res.json(user)),
-    err =>
-      res.status(err.status || 500).json({ message: err.message, error: err });
+  db.User
+    .create(req.body)
+    .then(user => res.json(user))
+    .catch(err => {
+      next(err);
+    });
 });
 
 router.patch('/:id', (req, res) => {
-  db.User.findByIdAndUpdate(req.params.id, req.body).then(user => {
-    res.json({ user });
-  });
+  db.User
+    .findByIdAndUpdate(req.params.id, req.body)
+    .then(user => {
+      res.json({ user });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
-  db.User.findByIdAndRemove(req.params.id).then(whatTheHellDoesThisGet => {
-    res.json(whatTheHellDoesThisGet);
-  });
+  db.User
+    .findByIdAndRemove(req.params.id)
+    .then(whatTheHellDoesThisGet => {
+      res.json(whatTheHellDoesThisGet);
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;

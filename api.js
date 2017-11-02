@@ -27,6 +27,13 @@ if (api.get('env') === 'development') {
   });
 }
 
+api.use(function(err, req, res, next) {
+  res.status(err.status || 500).json({
+    message: err.message,
+    error: {}
+  });
+});
+
 api.listen(3001, () => {
   console.log('start linstening port 3001');
 });
