@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 mongoose.set('debug', true);
-// mongoose.connect('mongodb://localhost/todo-app');
-var promise = mongoose.connect('mongodb://localhost/todo-app', {
+console.log(process.env.MONGODB_URI);
+var promise = mongoose.connect(process.env.MONGODB_URI, {
   useMongoClient: true
   /* other options */
 });
+
 mongoose.Promise = Promise;
 
 module.exports.User = require('./user');

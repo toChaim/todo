@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/users');
+require('dotenv').config();
 
 const api = express();
 api.use(morgan('tiny'));
@@ -21,7 +22,7 @@ api.use((req, res, next) => {
   next(err);
 });
 
-if (api.get('env') === 'development') {
+if (process.env.ENV === 'development') {
   api.use((err, req, res, next) => {
     res.status(err.status || 500).json({ message: err.message, error: err });
   });
