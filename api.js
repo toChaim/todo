@@ -35,6 +35,6 @@ api.use(function(err, req, res, next) {
   });
 });
 
-api.listen(3001, () => {
+api.listen(process.env.PORT || 3001, () => {
   console.log('start linstening port 3001');
 });
