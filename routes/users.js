@@ -13,12 +13,10 @@ router.get(
     res.status(err.status || 500).json({ message: err.message, error: err })
 );
 router.post('/', (req, res) => {
-  db.User
-    .create(req.body)
-    .then(user => res.json(user))
-    .catch(err => {
+  debugger;
+  db.User.create(req.body).then(user => res.json(user)),
+    err =>
       res.status(err.status || 500).json({ message: err.message, error: err });
-    });
 });
 router.get('/:id', function(req, res, next) {
   db.User.findById(req.params.id).then(function(user) {

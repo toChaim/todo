@@ -6,7 +6,7 @@ const userRoutes = require('./routes/users');
 
 const api = express();
 api.use(morgan('tiny'));
-api.use(bodyParser.urlencoded({ extended: true }));
+api.use(bodyParser.json());
 api.use(methodOverride('_method'));
 
 api.use('/users', userRoutes);
