@@ -59,14 +59,24 @@ router.delete('/:id', (req, res) => {
 router.post('/login', (req, res, next) => {
   db.User.findOne({ userName: req.body.userName }).then(user => {
     user.comparePassword(req.body.password, (err, isMatch) => {
-      if (isMatch) res.json({ user });
-      next({
-        status: 480,
-        message: 'invalid username or password',
-        err: 'bad id'
-      });
+      if (isMatch) {
+        req.session.user_id = user.id;
+        req.session.isAdmin = user.isAdmin;
+        res.json({ user });
+      } else {
+        next({
+          status: 401,
+          message: 'Invalid username or password.',
+          err: 'Invalid username or password'
+        });
+      }
     });
   });
+});
+
+router.post('/logout', (req, res, next) => {
+  req.session = null;
+  res.status(204).send();
 });
 
 module.exports = router;

@@ -3,12 +3,15 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/users');
+const session = require('cookie-session');
 require('dotenv').config();
 
 const api = express();
 api.use(morgan('tiny'));
 api.use(bodyParser.json());
 api.use(methodOverride('_method'));
+
+api.use(session({ secret: process.env.SECRET_KEY }));
 
 api.use('/users', userRoutes);
 
